@@ -1,0 +1,59 @@
+syntax = "proto3";
+option go_package = "github.com/Vyary/rdpc/rdpc";
+package rdpc;
+
+service Database {
+  rpc InsertPrice(InsertPriceRequest) returns (InsertPriceResponse) {}
+
+  rpc GetItemsByCategory(CategoryRequest) returns (Items) {}
+}
+
+message CategoryRequest { string category = 1; }
+
+message Items { repeated Item items = 1; }
+
+message Item {
+  string id = 1;
+  string realm = 2;
+  string category = 3;
+  string sub_category = 4;
+  string icon = 5;
+  string icon_tier_text = 6;
+  string name = 7;
+  string base_type = 8;
+  string rarity = 9;
+  int32 w = 10;
+  int32 h = 11;
+  int32 ilvl = 12;
+  bytes socketed_items = 13;
+  bytes properties = 14;
+  bytes requirements = 15;
+  bytes enchant_mods = 16;
+  bytes rune_mods = 17;
+  bytes implicit_mods = 18;
+  bytes explicit_mods = 19;
+  bytes fractured_mods = 20;
+  bytes desecrated_mods = 21;
+  string flavour_text = 22;
+  string descr_text = 23;
+  string sec_descr_text = 24;
+  bool support = 25;
+  bool duplicated = 26;
+  bool corrupted = 27;
+  bool sanctified = 28;
+  bool desecrated = 29;
+}
+
+message InsertPriceRequest { Price price = 1; }
+
+message InsertPriceResponse { int64 id = 1; }
+
+message Price {
+  string item_id = 1;
+  double price = 2;
+  string currency_id = 3;
+  int32 volume = 4;
+  int32 stock = 5;
+  string league = 6;
+  int64 timestamp = 7;
+}
