@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.12.4
-// source: rdpc/rdpc.proto
+// source: proto/rdpc.proto
 
-package rdpc
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -21,28 +21,30 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CategoryRequest struct {
+type Stats struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	Type          string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CategoryRequest) Reset() {
-	*x = CategoryRequest{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[0]
+func (x *Stats) Reset() {
+	*x = Stats{}
+	mi := &file_proto_rdpc_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CategoryRequest) String() string {
+func (x *Stats) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CategoryRequest) ProtoMessage() {}
+func (*Stats) ProtoMessage() {}
 
-func (x *CategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[0]
+func (x *Stats) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -53,60 +55,30 @@ func (x *CategoryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CategoryRequest.ProtoReflect.Descriptor instead.
-func (*CategoryRequest) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use Stats.ProtoReflect.Descriptor instead.
+func (*Stats) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CategoryRequest) GetCategory() string {
+func (x *Stats) GetId() string {
 	if x != nil {
-		return x.Category
+		return x.Id
 	}
 	return ""
 }
 
-type Items struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Items         []*Item                `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Items) Reset() {
-	*x = Items{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Items) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Items) ProtoMessage() {}
-
-func (x *Items) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[1]
+func (x *Stats) GetText() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Text
 	}
-	return mi.MessageOf(x)
+	return ""
 }
 
-// Deprecated: Use Items.ProtoReflect.Descriptor instead.
-func (*Items) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Items) GetItems() []*Item {
+func (x *Stats) GetType() string {
 	if x != nil {
-		return x.Items
+		return x.Type
 	}
-	return nil
+	return ""
 }
 
 type Item struct {
@@ -146,7 +118,7 @@ type Item struct {
 
 func (x *Item) Reset() {
 	*x = Item{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[2]
+	mi := &file_proto_rdpc_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +130,7 @@ func (x *Item) String() string {
 func (*Item) ProtoMessage() {}
 
 func (x *Item) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[2]
+	mi := &file_proto_rdpc_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +143,7 @@ func (x *Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Item.ProtoReflect.Descriptor instead.
 func (*Item) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{2}
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Item) GetId() string {
@@ -377,72 +349,37 @@ func (x *Item) GetDesecrated() bool {
 	return false
 }
 
-type InsertPriceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Price         *Price                 `protobuf:"bytes,1,opt,name=price,proto3" json:"price,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsertPriceRequest) Reset() {
-	*x = InsertPriceRequest{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsertPriceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsertPriceRequest) ProtoMessage() {}
-
-func (x *InsertPriceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsertPriceRequest.ProtoReflect.Descriptor instead.
-func (*InsertPriceRequest) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *InsertPriceRequest) GetPrice() *Price {
-	if x != nil {
-		return x.Price
-	}
-	return nil
-}
-
-type InsertPriceResponse struct {
+type Query struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ItemId        string                 `protobuf:"bytes,2,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	Realm         string                 `protobuf:"bytes,3,opt,name=realm,proto3" json:"realm,omitempty"`
+	League        string                 `protobuf:"bytes,4,opt,name=league,proto3" json:"league,omitempty"`
+	Query         string                 `protobuf:"bytes,5,opt,name=query,proto3" json:"query,omitempty"`
+	Update        int64                  `protobuf:"varint,6,opt,name=update,proto3" json:"update,omitempty"`
+	NextRun       int64                  `protobuf:"varint,7,opt,name=next_run,json=nextRun,proto3" json:"next_run,omitempty"`
+	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
+	StartedAt     int64                  `protobuf:"varint,9,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
+	RunOnce       bool                   `protobuf:"varint,10,opt,name=run_once,json=runOnce,proto3" json:"run_once,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *InsertPriceResponse) Reset() {
-	*x = InsertPriceResponse{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[4]
+func (x *Query) Reset() {
+	*x = Query{}
+	mi := &file_proto_rdpc_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *InsertPriceResponse) String() string {
+func (x *Query) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*InsertPriceResponse) ProtoMessage() {}
+func (*Query) ProtoMessage() {}
 
-func (x *InsertPriceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[4]
+func (x *Query) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -453,16 +390,79 @@ func (x *InsertPriceResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use InsertPriceResponse.ProtoReflect.Descriptor instead.
-func (*InsertPriceResponse) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use Query.ProtoReflect.Descriptor instead.
+func (*Query) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *InsertPriceResponse) GetId() int64 {
+func (x *Query) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
+}
+
+func (x *Query) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+func (x *Query) GetRealm() string {
+	if x != nil {
+		return x.Realm
+	}
+	return ""
+}
+
+func (x *Query) GetLeague() string {
+	if x != nil {
+		return x.League
+	}
+	return ""
+}
+
+func (x *Query) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *Query) GetUpdate() int64 {
+	if x != nil {
+		return x.Update
+	}
+	return 0
+}
+
+func (x *Query) GetNextRun() int64 {
+	if x != nil {
+		return x.NextRun
+	}
+	return 0
+}
+
+func (x *Query) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Query) GetStartedAt() int64 {
+	if x != nil {
+		return x.StartedAt
+	}
+	return 0
+}
+
+func (x *Query) GetRunOnce() bool {
+	if x != nil {
+		return x.RunOnce
+	}
+	return false
 }
 
 type Price struct {
@@ -470,8 +470,8 @@ type Price struct {
 	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
 	Price         float64                `protobuf:"fixed64,2,opt,name=price,proto3" json:"price,omitempty"`
 	CurrencyId    string                 `protobuf:"bytes,3,opt,name=currency_id,json=currencyId,proto3" json:"currency_id,omitempty"`
-	Volume        int32                  `protobuf:"varint,4,opt,name=volume,proto3" json:"volume,omitempty"`
-	Stock         int32                  `protobuf:"varint,5,opt,name=stock,proto3" json:"stock,omitempty"`
+	Volume        int64                  `protobuf:"varint,4,opt,name=volume,proto3" json:"volume,omitempty"`
+	Stock         int64                  `protobuf:"varint,5,opt,name=stock,proto3" json:"stock,omitempty"`
 	League        string                 `protobuf:"bytes,6,opt,name=league,proto3" json:"league,omitempty"`
 	Timestamp     int64                  `protobuf:"varint,7,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -480,7 +480,7 @@ type Price struct {
 
 func (x *Price) Reset() {
 	*x = Price{}
-	mi := &file_rdpc_rdpc_proto_msgTypes[5]
+	mi := &file_proto_rdpc_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -492,7 +492,7 @@ func (x *Price) String() string {
 func (*Price) ProtoMessage() {}
 
 func (x *Price) ProtoReflect() protoreflect.Message {
-	mi := &file_rdpc_rdpc_proto_msgTypes[5]
+	mi := &file_proto_rdpc_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -505,7 +505,7 @@ func (x *Price) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Price.ProtoReflect.Descriptor instead.
 func (*Price) Descriptor() ([]byte, []int) {
-	return file_rdpc_rdpc_proto_rawDescGZIP(), []int{5}
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Price) GetItemId() string {
@@ -529,14 +529,14 @@ func (x *Price) GetCurrencyId() string {
 	return ""
 }
 
-func (x *Price) GetVolume() int32 {
+func (x *Price) GetVolume() int64 {
 	if x != nil {
 		return x.Volume
 	}
 	return 0
 }
 
-func (x *Price) GetStock() int32 {
+func (x *Price) GetStock() int64 {
 	if x != nil {
 		return x.Stock
 	}
@@ -557,16 +557,575 @@ func (x *Price) GetTimestamp() int64 {
 	return 0
 }
 
-var File_rdpc_rdpc_proto protoreflect.FileDescriptor
+type BaseItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Realm         string                 `protobuf:"bytes,2,opt,name=realm,proto3" json:"realm,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	BaseType      string                 `protobuf:"bytes,4,opt,name=base_type,json=baseType,proto3" json:"base_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
 
-const file_rdpc_rdpc_proto_rawDesc = "" +
+func (x *BaseItem) Reset() {
+	*x = BaseItem{}
+	mi := &file_proto_rdpc_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseItem) ProtoMessage() {}
+
+func (x *BaseItem) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseItem.ProtoReflect.Descriptor instead.
+func (*BaseItem) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *BaseItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *BaseItem) GetRealm() string {
+	if x != nil {
+		return x.Realm
+	}
+	return ""
+}
+
+func (x *BaseItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BaseItem) GetBaseType() string {
+	if x != nil {
+		return x.BaseType
+	}
+	return ""
+}
+
+type HasItemRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	BaseType      string                 `protobuf:"bytes,2,opt,name=base_type,json=baseType,proto3" json:"base_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HasItemRequest) Reset() {
+	*x = HasItemRequest{}
+	mi := &file_proto_rdpc_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HasItemRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HasItemRequest) ProtoMessage() {}
+
+func (x *HasItemRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HasItemRequest.ProtoReflect.Descriptor instead.
+func (*HasItemRequest) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *HasItemRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *HasItemRequest) GetBaseType() string {
+	if x != nil {
+		return x.BaseType
+	}
+	return ""
+}
+
+type ItemIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ItemIDRequest) Reset() {
+	*x = ItemIDRequest{}
+	mi := &file_proto_rdpc_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ItemIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ItemIDRequest) ProtoMessage() {}
+
+func (x *ItemIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ItemIDRequest.ProtoReflect.Descriptor instead.
+func (*ItemIDRequest) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ItemIDRequest) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+type HasPriceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	League        string                 `protobuf:"bytes,2,opt,name=league,proto3" json:"league,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HasPriceRequest) Reset() {
+	*x = HasPriceRequest{}
+	mi := &file_proto_rdpc_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HasPriceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HasPriceRequest) ProtoMessage() {}
+
+func (x *HasPriceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HasPriceRequest.ProtoReflect.Descriptor instead.
+func (*HasPriceRequest) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *HasPriceRequest) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+func (x *HasPriceRequest) GetLeague() string {
+	if x != nil {
+		return x.League
+	}
+	return ""
+}
+
+type Empty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	mi := &file_proto_rdpc_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{8}
+}
+
+type BoolResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Has           bool                   `protobuf:"varint,1,opt,name=has,proto3" json:"has,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BoolResponse) Reset() {
+	*x = BoolResponse{}
+	mi := &file_proto_rdpc_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BoolResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BoolResponse) ProtoMessage() {}
+
+func (x *BoolResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BoolResponse.ProtoReflect.Descriptor instead.
+func (*BoolResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *BoolResponse) GetHas() bool {
+	if x != nil {
+		return x.Has
+	}
+	return false
+}
+
+type CategoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CategoryRequest) Reset() {
+	*x = CategoryRequest{}
+	mi := &file_proto_rdpc_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryRequest) ProtoMessage() {}
+
+func (x *CategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryRequest.ProtoReflect.Descriptor instead.
+func (*CategoryRequest) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CategoryRequest) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+type Queries struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Queries       []*Query               `protobuf:"bytes,1,rep,name=queries,proto3" json:"queries,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Queries) Reset() {
+	*x = Queries{}
+	mi := &file_proto_rdpc_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Queries) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Queries) ProtoMessage() {}
+
+func (x *Queries) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Queries.ProtoReflect.Descriptor instead.
+func (*Queries) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *Queries) GetQueries() []*Query {
+	if x != nil {
+		return x.Queries
+	}
+	return nil
+}
+
+type Items struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Item                `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Items) Reset() {
+	*x = Items{}
+	mi := &file_proto_rdpc_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Items) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Items) ProtoMessage() {}
+
+func (x *Items) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Items.ProtoReflect.Descriptor instead.
+func (*Items) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *Items) GetItems() []*Item {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type BaseItems struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*BaseItem            `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseItems) Reset() {
+	*x = BaseItems{}
+	mi := &file_proto_rdpc_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseItems) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseItems) ProtoMessage() {}
+
+func (x *BaseItems) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseItems.ProtoReflect.Descriptor instead.
+func (*BaseItems) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BaseItems) GetItems() []*BaseItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type GetModRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Hash          string                 `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetModRequest) Reset() {
+	*x = GetModRequest{}
+	mi := &file_proto_rdpc_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetModRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModRequest) ProtoMessage() {}
+
+func (x *GetModRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModRequest.ProtoReflect.Descriptor instead.
+func (*GetModRequest) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetModRequest) GetHash() string {
+	if x != nil {
+		return x.Hash
+	}
+	return ""
+}
+
+type GetModResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Mod           string                 `protobuf:"bytes,1,opt,name=mod,proto3" json:"mod,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetModResponse) Reset() {
+	*x = GetModResponse{}
+	mi := &file_proto_rdpc_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetModResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetModResponse) ProtoMessage() {}
+
+func (x *GetModResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rdpc_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetModResponse.ProtoReflect.Descriptor instead.
+func (*GetModResponse) Descriptor() ([]byte, []int) {
+	return file_proto_rdpc_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetModResponse) GetMod() string {
+	if x != nil {
+		return x.Mod
+	}
+	return ""
+}
+
+var File_proto_rdpc_proto protoreflect.FileDescriptor
+
+const file_proto_rdpc_proto_rawDesc = "" +
 	"\n" +
-	"\x0frdpc/rdpc.proto\x12\x04rdpc\"-\n" +
-	"\x0fCategoryRequest\x12\x1a\n" +
-	"\bcategory\x18\x01 \x01(\tR\bcategory\")\n" +
-	"\x05Items\x12 \n" +
-	"\x05items\x18\x01 \x03(\v2\n" +
-	".rdpc.ItemR\x05items\"\xe3\x06\n" +
+	"\x10proto/rdpc.proto\x12\x05proto\"?\n" +
+	"\x05Stats\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\"\xe3\x06\n" +
 	"\x04Item\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05realm\x18\x02 \x01(\tR\x05realm\x12\x1a\n" +
@@ -606,79 +1165,170 @@ const file_rdpc_rdpc_proto_rawDesc = "" +
 	"sanctified\x12\x1e\n" +
 	"\n" +
 	"desecrated\x18\x1d \x01(\bR\n" +
-	"desecrated\"7\n" +
-	"\x12InsertPriceRequest\x12!\n" +
-	"\x05price\x18\x01 \x01(\v2\v.rdpc.PriceR\x05price\"%\n" +
-	"\x13InsertPriceResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\xbb\x01\n" +
+	"desecrated\"\xf9\x01\n" +
+	"\x05Query\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
+	"\aitem_id\x18\x02 \x01(\tR\x06itemId\x12\x14\n" +
+	"\x05realm\x18\x03 \x01(\tR\x05realm\x12\x16\n" +
+	"\x06league\x18\x04 \x01(\tR\x06league\x12\x14\n" +
+	"\x05query\x18\x05 \x01(\tR\x05query\x12\x16\n" +
+	"\x06update\x18\x06 \x01(\x03R\x06update\x12\x19\n" +
+	"\bnext_run\x18\a \x01(\x03R\anextRun\x12\x16\n" +
+	"\x06status\x18\b \x01(\tR\x06status\x12\x1d\n" +
+	"\n" +
+	"started_at\x18\t \x01(\x03R\tstartedAt\x12\x19\n" +
+	"\brun_once\x18\n" +
+	" \x01(\bR\arunOnce\"\xbb\x01\n" +
 	"\x05Price\x12\x17\n" +
 	"\aitem_id\x18\x01 \x01(\tR\x06itemId\x12\x14\n" +
 	"\x05price\x18\x02 \x01(\x01R\x05price\x12\x1f\n" +
 	"\vcurrency_id\x18\x03 \x01(\tR\n" +
 	"currencyId\x12\x16\n" +
-	"\x06volume\x18\x04 \x01(\x05R\x06volume\x12\x14\n" +
-	"\x05stock\x18\x05 \x01(\x05R\x05stock\x12\x16\n" +
+	"\x06volume\x18\x04 \x01(\x03R\x06volume\x12\x14\n" +
+	"\x05stock\x18\x05 \x01(\x03R\x05stock\x12\x16\n" +
 	"\x06league\x18\x06 \x01(\tR\x06league\x12\x1c\n" +
-	"\ttimestamp\x18\a \x01(\x03R\ttimestamp2\x8c\x01\n" +
-	"\bDatabase\x12:\n" +
-	"\x12GetItemsByCategory\x12\x15.rdpc.CategoryRequest\x1a\v.rdpc.Items\"\x00\x12D\n" +
-	"\vInsertPrice\x12\x18.rdpc.InsertPriceRequest\x1a\x19.rdpc.InsertPriceResponse\"\x00B\x1cZ\x1agithub.com/Vyary/rdpc/rdpcb\x06proto3"
+	"\ttimestamp\x18\a \x01(\x03R\ttimestamp\"a\n" +
+	"\bBaseItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05realm\x18\x02 \x01(\tR\x05realm\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1b\n" +
+	"\tbase_type\x18\x04 \x01(\tR\bbaseType\"A\n" +
+	"\x0eHasItemRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n" +
+	"\tbase_type\x18\x02 \x01(\tR\bbaseType\"(\n" +
+	"\rItemIDRequest\x12\x17\n" +
+	"\aitem_id\x18\x01 \x01(\tR\x06itemId\"B\n" +
+	"\x0fHasPriceRequest\x12\x17\n" +
+	"\aitem_id\x18\x01 \x01(\tR\x06itemId\x12\x16\n" +
+	"\x06league\x18\x02 \x01(\tR\x06league\"\a\n" +
+	"\x05Empty\" \n" +
+	"\fBoolResponse\x12\x10\n" +
+	"\x03has\x18\x01 \x01(\bR\x03has\"-\n" +
+	"\x0fCategoryRequest\x12\x1a\n" +
+	"\bcategory\x18\x01 \x01(\tR\bcategory\"1\n" +
+	"\aQueries\x12&\n" +
+	"\aqueries\x18\x01 \x03(\v2\f.proto.QueryR\aqueries\"*\n" +
+	"\x05Items\x12!\n" +
+	"\x05items\x18\x01 \x03(\v2\v.proto.ItemR\x05items\"2\n" +
+	"\tBaseItems\x12%\n" +
+	"\x05items\x18\x01 \x03(\v2\x0f.proto.BaseItemR\x05items\"#\n" +
+	"\rGetModRequest\x12\x12\n" +
+	"\x04hash\x18\x01 \x01(\tR\x04hash\"\"\n" +
+	"\x0eGetModResponse\x12\x10\n" +
+	"\x03mod\x18\x01 \x01(\tR\x03mod2\xc9\x06\n" +
+	"\bDatabase\x12+\n" +
+	"\vInsertStats\x12\f.proto.Stats\x1a\f.proto.Empty\"\x00\x12)\n" +
+	"\n" +
+	"InsertItem\x12\v.proto.Item\x1a\f.proto.Empty\"\x00\x12/\n" +
+	"\x10InsertItemWithID\x12\v.proto.Item\x1a\f.proto.Empty\"\x00\x12+\n" +
+	"\vInsertQuery\x12\f.proto.Query\x1a\f.proto.Empty\"\x00\x12+\n" +
+	"\vInsertPrice\x12\f.proto.Price\x1a\f.proto.Empty\"\x00\x127\n" +
+	"\aHasItem\x12\x15.proto.HasItemRequest\x1a\x13.proto.BoolResponse\"\x00\x126\n" +
+	"\aHasInfo\x12\x14.proto.ItemIDRequest\x1a\x13.proto.BoolResponse\"\x00\x12>\n" +
+	"\rHasPriceQuery\x12\x16.proto.HasPriceRequest\x1a\x13.proto.BoolResponse\"\x00\x12:\n" +
+	"\fGetBaseItems\x12\x16.proto.CategoryRequest\x1a\x10.proto.BaseItems\"\x00\x120\n" +
+	"\x0eGetInfoQueries\x12\f.proto.Empty\x1a\x0e.proto.Queries\"\x00\x121\n" +
+	"\x0fGetPriceQueries\x12\f.proto.Empty\x1a\x0e.proto.Queries\"\x00\x127\n" +
+	"\x06GetMod\x12\x14.proto.GetModRequest\x1a\x15.proto.GetModResponse\"\x00\x12<\n" +
+	"\x12GetItemsByCategory\x12\x16.proto.CategoryRequest\x1a\f.proto.Items\"\x00\x12-\n" +
+	"\x0eUpdateItemInfo\x12\v.proto.Item\x1a\f.proto.Empty\"\x00\x12-\n" +
+	"\rUpdateNextRun\x12\f.proto.Query\x1a\f.proto.Empty\"\x00\x123\n" +
+	"\vDeleteQuery\x12\x14.proto.ItemIDRequest\x1a\f.proto.Empty\"\x00B\x1dZ\x1bgithub.com/Vyary/rdpc/protob\x06proto3"
 
 var (
-	file_rdpc_rdpc_proto_rawDescOnce sync.Once
-	file_rdpc_rdpc_proto_rawDescData []byte
+	file_proto_rdpc_proto_rawDescOnce sync.Once
+	file_proto_rdpc_proto_rawDescData []byte
 )
 
-func file_rdpc_rdpc_proto_rawDescGZIP() []byte {
-	file_rdpc_rdpc_proto_rawDescOnce.Do(func() {
-		file_rdpc_rdpc_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_rdpc_rdpc_proto_rawDesc), len(file_rdpc_rdpc_proto_rawDesc)))
+func file_proto_rdpc_proto_rawDescGZIP() []byte {
+	file_proto_rdpc_proto_rawDescOnce.Do(func() {
+		file_proto_rdpc_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_rdpc_proto_rawDesc), len(file_proto_rdpc_proto_rawDesc)))
 	})
-	return file_rdpc_rdpc_proto_rawDescData
+	return file_proto_rdpc_proto_rawDescData
 }
 
-var file_rdpc_rdpc_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_rdpc_rdpc_proto_goTypes = []any{
-	(*CategoryRequest)(nil),     // 0: rdpc.CategoryRequest
-	(*Items)(nil),               // 1: rdpc.Items
-	(*Item)(nil),                // 2: rdpc.Item
-	(*InsertPriceRequest)(nil),  // 3: rdpc.InsertPriceRequest
-	(*InsertPriceResponse)(nil), // 4: rdpc.InsertPriceResponse
-	(*Price)(nil),               // 5: rdpc.Price
+var file_proto_rdpc_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_proto_rdpc_proto_goTypes = []any{
+	(*Stats)(nil),           // 0: proto.Stats
+	(*Item)(nil),            // 1: proto.Item
+	(*Query)(nil),           // 2: proto.Query
+	(*Price)(nil),           // 3: proto.Price
+	(*BaseItem)(nil),        // 4: proto.BaseItem
+	(*HasItemRequest)(nil),  // 5: proto.HasItemRequest
+	(*ItemIDRequest)(nil),   // 6: proto.ItemIDRequest
+	(*HasPriceRequest)(nil), // 7: proto.HasPriceRequest
+	(*Empty)(nil),           // 8: proto.Empty
+	(*BoolResponse)(nil),    // 9: proto.BoolResponse
+	(*CategoryRequest)(nil), // 10: proto.CategoryRequest
+	(*Queries)(nil),         // 11: proto.Queries
+	(*Items)(nil),           // 12: proto.Items
+	(*BaseItems)(nil),       // 13: proto.BaseItems
+	(*GetModRequest)(nil),   // 14: proto.GetModRequest
+	(*GetModResponse)(nil),  // 15: proto.GetModResponse
 }
-var file_rdpc_rdpc_proto_depIdxs = []int32{
-	2, // 0: rdpc.Items.items:type_name -> rdpc.Item
-	5, // 1: rdpc.InsertPriceRequest.price:type_name -> rdpc.Price
-	0, // 2: rdpc.Database.GetItemsByCategory:input_type -> rdpc.CategoryRequest
-	3, // 3: rdpc.Database.InsertPrice:input_type -> rdpc.InsertPriceRequest
-	1, // 4: rdpc.Database.GetItemsByCategory:output_type -> rdpc.Items
-	4, // 5: rdpc.Database.InsertPrice:output_type -> rdpc.InsertPriceResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+var file_proto_rdpc_proto_depIdxs = []int32{
+	2,  // 0: proto.Queries.queries:type_name -> proto.Query
+	1,  // 1: proto.Items.items:type_name -> proto.Item
+	4,  // 2: proto.BaseItems.items:type_name -> proto.BaseItem
+	0,  // 3: proto.Database.InsertStats:input_type -> proto.Stats
+	1,  // 4: proto.Database.InsertItem:input_type -> proto.Item
+	1,  // 5: proto.Database.InsertItemWithID:input_type -> proto.Item
+	2,  // 6: proto.Database.InsertQuery:input_type -> proto.Query
+	3,  // 7: proto.Database.InsertPrice:input_type -> proto.Price
+	5,  // 8: proto.Database.HasItem:input_type -> proto.HasItemRequest
+	6,  // 9: proto.Database.HasInfo:input_type -> proto.ItemIDRequest
+	7,  // 10: proto.Database.HasPriceQuery:input_type -> proto.HasPriceRequest
+	10, // 11: proto.Database.GetBaseItems:input_type -> proto.CategoryRequest
+	8,  // 12: proto.Database.GetInfoQueries:input_type -> proto.Empty
+	8,  // 13: proto.Database.GetPriceQueries:input_type -> proto.Empty
+	14, // 14: proto.Database.GetMod:input_type -> proto.GetModRequest
+	10, // 15: proto.Database.GetItemsByCategory:input_type -> proto.CategoryRequest
+	1,  // 16: proto.Database.UpdateItemInfo:input_type -> proto.Item
+	2,  // 17: proto.Database.UpdateNextRun:input_type -> proto.Query
+	6,  // 18: proto.Database.DeleteQuery:input_type -> proto.ItemIDRequest
+	8,  // 19: proto.Database.InsertStats:output_type -> proto.Empty
+	8,  // 20: proto.Database.InsertItem:output_type -> proto.Empty
+	8,  // 21: proto.Database.InsertItemWithID:output_type -> proto.Empty
+	8,  // 22: proto.Database.InsertQuery:output_type -> proto.Empty
+	8,  // 23: proto.Database.InsertPrice:output_type -> proto.Empty
+	9,  // 24: proto.Database.HasItem:output_type -> proto.BoolResponse
+	9,  // 25: proto.Database.HasInfo:output_type -> proto.BoolResponse
+	9,  // 26: proto.Database.HasPriceQuery:output_type -> proto.BoolResponse
+	13, // 27: proto.Database.GetBaseItems:output_type -> proto.BaseItems
+	11, // 28: proto.Database.GetInfoQueries:output_type -> proto.Queries
+	11, // 29: proto.Database.GetPriceQueries:output_type -> proto.Queries
+	15, // 30: proto.Database.GetMod:output_type -> proto.GetModResponse
+	12, // 31: proto.Database.GetItemsByCategory:output_type -> proto.Items
+	8,  // 32: proto.Database.UpdateItemInfo:output_type -> proto.Empty
+	8,  // 33: proto.Database.UpdateNextRun:output_type -> proto.Empty
+	8,  // 34: proto.Database.DeleteQuery:output_type -> proto.Empty
+	19, // [19:35] is the sub-list for method output_type
+	3,  // [3:19] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_rdpc_rdpc_proto_init() }
-func file_rdpc_rdpc_proto_init() {
-	if File_rdpc_rdpc_proto != nil {
+func init() { file_proto_rdpc_proto_init() }
+func file_proto_rdpc_proto_init() {
+	if File_proto_rdpc_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rdpc_rdpc_proto_rawDesc), len(file_rdpc_rdpc_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_rdpc_proto_rawDesc), len(file_proto_rdpc_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_rdpc_rdpc_proto_goTypes,
-		DependencyIndexes: file_rdpc_rdpc_proto_depIdxs,
-		MessageInfos:      file_rdpc_rdpc_proto_msgTypes,
+		GoTypes:           file_proto_rdpc_proto_goTypes,
+		DependencyIndexes: file_proto_rdpc_proto_depIdxs,
+		MessageInfos:      file_proto_rdpc_proto_msgTypes,
 	}.Build()
-	File_rdpc_rdpc_proto = out.File
-	file_rdpc_rdpc_proto_goTypes = nil
-	file_rdpc_rdpc_proto_depIdxs = nil
+	File_proto_rdpc_proto = out.File
+	file_proto_rdpc_proto_goTypes = nil
+	file_proto_rdpc_proto_depIdxs = nil
 }

@@ -5,14 +5,13 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"log"
-	"log/slog"
 	"os"
 	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	pb "github.com/Vyary/rdpc/rdpc"
+	pb "github.com/Vyary/rdpc/proto"
 )
 
 func main() {
@@ -31,11 +30,10 @@ func main() {
 		log.Fatal("Failed to add CA certificate to pool")
 	}
 
-	// Configure TLS
 	tlsConfig := &tls.Config{
 		Certificates: []tls.Certificate{clientCert},
 		RootCAs:      certPool,
-		ServerName:   "myserver.example.com", // Must match server cert CN/SAN
+		ServerName:   "myserver.example.com",
 	}
 
 	creds := credentials.NewTLS(tlsConfig)
@@ -46,27 +44,23 @@ func main() {
 	}
 	defer conn.Close()
 
-	c := pb.NewDatabaseClient(conn)
+	db := pb.NewDatabaseClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
 	price := pb.Price{
-		ItemId: "test123",
-		Price: 3.4,
+		ItemId:     "test123",
+		Price:      3.4,
 		CurrencyId: "werwe",
-		Volume: 324,
-		Stock: 23,
-		League: "Testing",
-		Timestamp: time.Now().Unix(),
+		Volume:     324,
+		Stock:      23,
+		League:     "Testing",
+		Timestamp:  time.Now().Unix(),
 	}
 
-	insert := pb.InsertPriceRequest{Price: &price}
-
-	id, err := c.InsertPrice(ctx, &insert)
+	_, err = db.InsertPrice(ctx, &price)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	slog.Info(id.String())
 }

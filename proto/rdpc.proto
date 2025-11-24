@@ -1,16 +1,35 @@
 syntax = "proto3";
-option go_package = "github.com/Vyary/rdpc/rdpc";
-package rdpc;
+option go_package = "github.com/Vyary/rdpc/proto";
+package proto;
 
 service Database {
-  rpc InsertPrice(InsertPriceRequest) returns (InsertPriceResponse) {}
+  rpc InsertStats(Stats) returns (Empty) {}
+  rpc InsertItem(Item) returns (Empty) {}
+  rpc InsertItemWithID(Item) returns (Empty) {}
+  rpc InsertQuery(Query) returns (Empty) {}
+  rpc InsertPrice(Price) returns (Empty) {}
 
+  rpc HasItem(HasItemRequest) returns (BoolResponse) {}
+  rpc HasInfo(ItemIDRequest) returns (BoolResponse) {}
+  rpc HasPriceQuery(HasPriceRequest) returns (BoolResponse) {}
+
+  rpc GetBaseItems(CategoryRequest) returns (BaseItems) {}
+  rpc GetInfoQueries(Empty) returns (Queries) {}
+  rpc GetPriceQueries(Empty) returns (Queries) {}
+  rpc GetMod(GetModRequest) returns (GetModResponse) {}
   rpc GetItemsByCategory(CategoryRequest) returns (Items) {}
+
+  rpc UpdateItemInfo(Item) returns (Empty) {}
+  rpc UpdateNextRun(Query) returns (Empty) {}
+
+  rpc DeleteQuery(ItemIDRequest) returns (Empty) {}
 }
 
-message CategoryRequest { string category = 1; }
-
-message Items { repeated Item items = 1; }
+message Stats {
+  string id = 1;
+  string text = 2;
+  string type = 3;
+}
 
 message Item {
   string id = 1;
@@ -44,16 +63,60 @@ message Item {
   bool desecrated = 29;
 }
 
-message InsertPriceRequest { Price price = 1; }
-
-message InsertPriceResponse { int64 id = 1; }
+message Query {
+  int64 id = 1;
+  string item_id = 2;
+  string realm = 3;
+  string league = 4;
+  string query = 5;
+  int64 update = 6;
+  int64 next_run = 7;
+  string status = 8;
+  int64 started_at = 9;
+  bool run_once = 10;
+}
 
 message Price {
   string item_id = 1;
   double price = 2;
   string currency_id = 3;
-  int32 volume = 4;
-  int32 stock = 5;
+  int64 volume = 4;
+  int64 stock = 5;
   string league = 6;
   int64 timestamp = 7;
 }
+
+message BaseItem {
+  string id = 1;
+  string realm = 2;
+  string name = 3;
+  string base_type = 4;
+}
+
+message HasItemRequest {
+  string name = 1;
+  string base_type = 2;
+}
+
+message ItemIDRequest { string item_id = 1; }
+
+message HasPriceRequest {
+  string item_id = 1;
+  string league = 2;
+}
+
+message Empty {}
+
+message BoolResponse { bool has = 1; }
+
+message CategoryRequest { string category = 1; }
+
+message Queries { repeated Query queries = 1; }
+
+message Items { repeated Item items = 1; }
+
+message BaseItems { repeated BaseItem items = 1; }
+
+message GetModRequest { string hash = 1; }
+
+message GetModResponse { string mod = 1; }

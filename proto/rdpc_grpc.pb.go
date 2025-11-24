@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.12.4
-// source: rdpc/rdpc.proto
+// source: proto/rdpc.proto
 
-package rdpc
+package proto
 
 import (
 	context "context"
@@ -19,16 +19,44 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Database_GetItemsByCategory_FullMethodName = "/rdpc.Database/GetItemsByCategory"
-	Database_InsertPrice_FullMethodName        = "/rdpc.Database/InsertPrice"
+	Database_InsertStats_FullMethodName        = "/proto.Database/InsertStats"
+	Database_InsertItem_FullMethodName         = "/proto.Database/InsertItem"
+	Database_InsertItemWithID_FullMethodName   = "/proto.Database/InsertItemWithID"
+	Database_InsertQuery_FullMethodName        = "/proto.Database/InsertQuery"
+	Database_InsertPrice_FullMethodName        = "/proto.Database/InsertPrice"
+	Database_HasItem_FullMethodName            = "/proto.Database/HasItem"
+	Database_HasInfo_FullMethodName            = "/proto.Database/HasInfo"
+	Database_HasPriceQuery_FullMethodName      = "/proto.Database/HasPriceQuery"
+	Database_GetBaseItems_FullMethodName       = "/proto.Database/GetBaseItems"
+	Database_GetInfoQueries_FullMethodName     = "/proto.Database/GetInfoQueries"
+	Database_GetPriceQueries_FullMethodName    = "/proto.Database/GetPriceQueries"
+	Database_GetMod_FullMethodName             = "/proto.Database/GetMod"
+	Database_GetItemsByCategory_FullMethodName = "/proto.Database/GetItemsByCategory"
+	Database_UpdateItemInfo_FullMethodName     = "/proto.Database/UpdateItemInfo"
+	Database_UpdateNextRun_FullMethodName      = "/proto.Database/UpdateNextRun"
+	Database_DeleteQuery_FullMethodName        = "/proto.Database/DeleteQuery"
 )
 
 // DatabaseClient is the client API for Database service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DatabaseClient interface {
+	InsertStats(ctx context.Context, in *Stats, opts ...grpc.CallOption) (*Empty, error)
+	InsertItem(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error)
+	InsertItemWithID(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error)
+	InsertQuery(ctx context.Context, in *Query, opts ...grpc.CallOption) (*Empty, error)
+	InsertPrice(ctx context.Context, in *Price, opts ...grpc.CallOption) (*Empty, error)
+	HasItem(ctx context.Context, in *HasItemRequest, opts ...grpc.CallOption) (*BoolResponse, error)
+	HasInfo(ctx context.Context, in *ItemIDRequest, opts ...grpc.CallOption) (*BoolResponse, error)
+	HasPriceQuery(ctx context.Context, in *HasPriceRequest, opts ...grpc.CallOption) (*BoolResponse, error)
+	GetBaseItems(ctx context.Context, in *CategoryRequest, opts ...grpc.CallOption) (*BaseItems, error)
+	GetInfoQueries(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Queries, error)
+	GetPriceQueries(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Queries, error)
+	GetMod(ctx context.Context, in *GetModRequest, opts ...grpc.CallOption) (*GetModResponse, error)
 	GetItemsByCategory(ctx context.Context, in *CategoryRequest, opts ...grpc.CallOption) (*Items, error)
-	InsertPrice(ctx context.Context, in *InsertPriceRequest, opts ...grpc.CallOption) (*InsertPriceResponse, error)
+	UpdateItemInfo(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error)
+	UpdateNextRun(ctx context.Context, in *Query, opts ...grpc.CallOption) (*Empty, error)
+	DeleteQuery(ctx context.Context, in *ItemIDRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type databaseClient struct {
@@ -37,6 +65,126 @@ type databaseClient struct {
 
 func NewDatabaseClient(cc grpc.ClientConnInterface) DatabaseClient {
 	return &databaseClient{cc}
+}
+
+func (c *databaseClient) InsertStats(ctx context.Context, in *Stats, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_InsertStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) InsertItem(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_InsertItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) InsertItemWithID(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_InsertItemWithID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) InsertQuery(ctx context.Context, in *Query, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_InsertQuery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) InsertPrice(ctx context.Context, in *Price, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_InsertPrice_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) HasItem(ctx context.Context, in *HasItemRequest, opts ...grpc.CallOption) (*BoolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, Database_HasItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) HasInfo(ctx context.Context, in *ItemIDRequest, opts ...grpc.CallOption) (*BoolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, Database_HasInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) HasPriceQuery(ctx context.Context, in *HasPriceRequest, opts ...grpc.CallOption) (*BoolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, Database_HasPriceQuery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) GetBaseItems(ctx context.Context, in *CategoryRequest, opts ...grpc.CallOption) (*BaseItems, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BaseItems)
+	err := c.cc.Invoke(ctx, Database_GetBaseItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) GetInfoQueries(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Queries, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Queries)
+	err := c.cc.Invoke(ctx, Database_GetInfoQueries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) GetPriceQueries(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Queries, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Queries)
+	err := c.cc.Invoke(ctx, Database_GetPriceQueries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) GetMod(ctx context.Context, in *GetModRequest, opts ...grpc.CallOption) (*GetModResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetModResponse)
+	err := c.cc.Invoke(ctx, Database_GetMod_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *databaseClient) GetItemsByCategory(ctx context.Context, in *CategoryRequest, opts ...grpc.CallOption) (*Items, error) {
@@ -49,10 +197,30 @@ func (c *databaseClient) GetItemsByCategory(ctx context.Context, in *CategoryReq
 	return out, nil
 }
 
-func (c *databaseClient) InsertPrice(ctx context.Context, in *InsertPriceRequest, opts ...grpc.CallOption) (*InsertPriceResponse, error) {
+func (c *databaseClient) UpdateItemInfo(ctx context.Context, in *Item, opts ...grpc.CallOption) (*Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(InsertPriceResponse)
-	err := c.cc.Invoke(ctx, Database_InsertPrice_FullMethodName, in, out, cOpts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_UpdateItemInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) UpdateNextRun(ctx context.Context, in *Query, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_UpdateNextRun_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseClient) DeleteQuery(ctx context.Context, in *ItemIDRequest, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Database_DeleteQuery_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,8 +231,22 @@ func (c *databaseClient) InsertPrice(ctx context.Context, in *InsertPriceRequest
 // All implementations must embed UnimplementedDatabaseServer
 // for forward compatibility.
 type DatabaseServer interface {
+	InsertStats(context.Context, *Stats) (*Empty, error)
+	InsertItem(context.Context, *Item) (*Empty, error)
+	InsertItemWithID(context.Context, *Item) (*Empty, error)
+	InsertQuery(context.Context, *Query) (*Empty, error)
+	InsertPrice(context.Context, *Price) (*Empty, error)
+	HasItem(context.Context, *HasItemRequest) (*BoolResponse, error)
+	HasInfo(context.Context, *ItemIDRequest) (*BoolResponse, error)
+	HasPriceQuery(context.Context, *HasPriceRequest) (*BoolResponse, error)
+	GetBaseItems(context.Context, *CategoryRequest) (*BaseItems, error)
+	GetInfoQueries(context.Context, *Empty) (*Queries, error)
+	GetPriceQueries(context.Context, *Empty) (*Queries, error)
+	GetMod(context.Context, *GetModRequest) (*GetModResponse, error)
 	GetItemsByCategory(context.Context, *CategoryRequest) (*Items, error)
-	InsertPrice(context.Context, *InsertPriceRequest) (*InsertPriceResponse, error)
+	UpdateItemInfo(context.Context, *Item) (*Empty, error)
+	UpdateNextRun(context.Context, *Query) (*Empty, error)
+	DeleteQuery(context.Context, *ItemIDRequest) (*Empty, error)
 	mustEmbedUnimplementedDatabaseServer()
 }
 
@@ -75,11 +257,53 @@ type DatabaseServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDatabaseServer struct{}
 
+func (UnimplementedDatabaseServer) InsertStats(context.Context, *Stats) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertStats not implemented")
+}
+func (UnimplementedDatabaseServer) InsertItem(context.Context, *Item) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertItem not implemented")
+}
+func (UnimplementedDatabaseServer) InsertItemWithID(context.Context, *Item) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertItemWithID not implemented")
+}
+func (UnimplementedDatabaseServer) InsertQuery(context.Context, *Query) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertQuery not implemented")
+}
+func (UnimplementedDatabaseServer) InsertPrice(context.Context, *Price) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertPrice not implemented")
+}
+func (UnimplementedDatabaseServer) HasItem(context.Context, *HasItemRequest) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasItem not implemented")
+}
+func (UnimplementedDatabaseServer) HasInfo(context.Context, *ItemIDRequest) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasInfo not implemented")
+}
+func (UnimplementedDatabaseServer) HasPriceQuery(context.Context, *HasPriceRequest) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HasPriceQuery not implemented")
+}
+func (UnimplementedDatabaseServer) GetBaseItems(context.Context, *CategoryRequest) (*BaseItems, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBaseItems not implemented")
+}
+func (UnimplementedDatabaseServer) GetInfoQueries(context.Context, *Empty) (*Queries, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfoQueries not implemented")
+}
+func (UnimplementedDatabaseServer) GetPriceQueries(context.Context, *Empty) (*Queries, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPriceQueries not implemented")
+}
+func (UnimplementedDatabaseServer) GetMod(context.Context, *GetModRequest) (*GetModResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMod not implemented")
+}
 func (UnimplementedDatabaseServer) GetItemsByCategory(context.Context, *CategoryRequest) (*Items, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetItemsByCategory not implemented")
 }
-func (UnimplementedDatabaseServer) InsertPrice(context.Context, *InsertPriceRequest) (*InsertPriceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InsertPrice not implemented")
+func (UnimplementedDatabaseServer) UpdateItemInfo(context.Context, *Item) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateItemInfo not implemented")
+}
+func (UnimplementedDatabaseServer) UpdateNextRun(context.Context, *Query) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNextRun not implemented")
+}
+func (UnimplementedDatabaseServer) DeleteQuery(context.Context, *ItemIDRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuery not implemented")
 }
 func (UnimplementedDatabaseServer) mustEmbedUnimplementedDatabaseServer() {}
 func (UnimplementedDatabaseServer) testEmbeddedByValue()                  {}
@@ -102,6 +326,222 @@ func RegisterDatabaseServer(s grpc.ServiceRegistrar, srv DatabaseServer) {
 	s.RegisterService(&Database_ServiceDesc, srv)
 }
 
+func _Database_InsertStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Stats)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).InsertStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_InsertStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).InsertStats(ctx, req.(*Stats))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_InsertItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Item)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).InsertItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_InsertItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).InsertItem(ctx, req.(*Item))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_InsertItemWithID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Item)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).InsertItemWithID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_InsertItemWithID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).InsertItemWithID(ctx, req.(*Item))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_InsertQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Query)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).InsertQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_InsertQuery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).InsertQuery(ctx, req.(*Query))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_InsertPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Price)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).InsertPrice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_InsertPrice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).InsertPrice(ctx, req.(*Price))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_HasItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HasItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).HasItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_HasItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).HasItem(ctx, req.(*HasItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_HasInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ItemIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).HasInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_HasInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).HasInfo(ctx, req.(*ItemIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_HasPriceQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HasPriceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).HasPriceQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_HasPriceQuery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).HasPriceQuery(ctx, req.(*HasPriceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_GetBaseItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).GetBaseItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_GetBaseItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).GetBaseItems(ctx, req.(*CategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_GetInfoQueries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).GetInfoQueries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_GetInfoQueries_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).GetInfoQueries(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_GetPriceQueries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).GetPriceQueries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_GetPriceQueries_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).GetPriceQueries(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_GetMod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetModRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).GetMod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_GetMod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).GetMod(ctx, req.(*GetModRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Database_GetItemsByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CategoryRequest)
 	if err := dec(in); err != nil {
@@ -120,20 +560,56 @@ func _Database_GetItemsByCategory_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Database_InsertPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InsertPriceRequest)
+func _Database_UpdateItemInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Item)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DatabaseServer).InsertPrice(ctx, in)
+		return srv.(DatabaseServer).UpdateItemInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Database_InsertPrice_FullMethodName,
+		FullMethod: Database_UpdateItemInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).InsertPrice(ctx, req.(*InsertPriceRequest))
+		return srv.(DatabaseServer).UpdateItemInfo(ctx, req.(*Item))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_UpdateNextRun_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Query)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).UpdateNextRun(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_UpdateNextRun_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).UpdateNextRun(ctx, req.(*Query))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Database_DeleteQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ItemIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).DeleteQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_DeleteQuery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).DeleteQuery(ctx, req.(*ItemIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -142,18 +618,74 @@ func _Database_InsertPrice_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Database_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "rdpc.Database",
+	ServiceName: "proto.Database",
 	HandlerType: (*DatabaseServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetItemsByCategory",
-			Handler:    _Database_GetItemsByCategory_Handler,
+			MethodName: "InsertStats",
+			Handler:    _Database_InsertStats_Handler,
+		},
+		{
+			MethodName: "InsertItem",
+			Handler:    _Database_InsertItem_Handler,
+		},
+		{
+			MethodName: "InsertItemWithID",
+			Handler:    _Database_InsertItemWithID_Handler,
+		},
+		{
+			MethodName: "InsertQuery",
+			Handler:    _Database_InsertQuery_Handler,
 		},
 		{
 			MethodName: "InsertPrice",
 			Handler:    _Database_InsertPrice_Handler,
 		},
+		{
+			MethodName: "HasItem",
+			Handler:    _Database_HasItem_Handler,
+		},
+		{
+			MethodName: "HasInfo",
+			Handler:    _Database_HasInfo_Handler,
+		},
+		{
+			MethodName: "HasPriceQuery",
+			Handler:    _Database_HasPriceQuery_Handler,
+		},
+		{
+			MethodName: "GetBaseItems",
+			Handler:    _Database_GetBaseItems_Handler,
+		},
+		{
+			MethodName: "GetInfoQueries",
+			Handler:    _Database_GetInfoQueries_Handler,
+		},
+		{
+			MethodName: "GetPriceQueries",
+			Handler:    _Database_GetPriceQueries_Handler,
+		},
+		{
+			MethodName: "GetMod",
+			Handler:    _Database_GetMod_Handler,
+		},
+		{
+			MethodName: "GetItemsByCategory",
+			Handler:    _Database_GetItemsByCategory_Handler,
+		},
+		{
+			MethodName: "UpdateItemInfo",
+			Handler:    _Database_UpdateItemInfo_Handler,
+		},
+		{
+			MethodName: "UpdateNextRun",
+			Handler:    _Database_UpdateNextRun_Handler,
+		},
+		{
+			MethodName: "DeleteQuery",
+			Handler:    _Database_DeleteQuery_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "rdpc/rdpc.proto",
+	Metadata: "proto/rdpc.proto",
 }
