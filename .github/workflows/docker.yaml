@@ -19,7 +19,7 @@ jobs:
 
       - name: Build images
         run: |
-          IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/rdpc-arm"
+          IMAGE="vayry/rdpc-arm"
           SHA_TAG="${IMAGE}:${{ github.sha }}"
           LATEST_TAG="${IMAGE}:latest"
 
@@ -27,6 +27,6 @@ jobs:
 
       - name: Push images
         run: |
-          IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/rdpc-arm"
+          IMAGE="vayry/rdpc-arm"
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:latest"
