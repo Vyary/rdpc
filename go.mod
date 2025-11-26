@@ -3,6 +3,7 @@ module github.com/Vyary/rdpc
 go 1.25.1
 
 require (
+	github.com/joho/godotenv v1.5.1
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	modernc.org/sqlite v1.40.1

@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -49,18 +50,9 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	price := pb.Price{
-		ItemId:     "test123",
-		Price:      3.4,
-		CurrencyId: "werwe",
-		Volume:     324,
-		Stock:      23,
-		League:     "Testing",
-		Timestamp:  time.Now().Unix(),
-	}
-
-	_, err = db.InsertPrice(ctx, &price)
+	i, err := db.GetItemsByCategory(ctx, &pb.CategoryRequest{Category: "uniques"})
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("%+v", i)
 }

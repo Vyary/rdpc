@@ -92,9 +92,9 @@ type Item struct {
 	Name           string                 `protobuf:"bytes,7,opt,name=name,proto3" json:"name,omitempty"`
 	BaseType       string                 `protobuf:"bytes,8,opt,name=base_type,json=baseType,proto3" json:"base_type,omitempty"`
 	Rarity         string                 `protobuf:"bytes,9,opt,name=rarity,proto3" json:"rarity,omitempty"`
-	W              int32                  `protobuf:"varint,10,opt,name=w,proto3" json:"w,omitempty"`
-	H              int32                  `protobuf:"varint,11,opt,name=h,proto3" json:"h,omitempty"`
-	Ilvl           int32                  `protobuf:"varint,12,opt,name=ilvl,proto3" json:"ilvl,omitempty"`
+	W              uint32                 `protobuf:"varint,10,opt,name=w,proto3" json:"w,omitempty"`
+	H              uint32                 `protobuf:"varint,11,opt,name=h,proto3" json:"h,omitempty"`
+	Ilvl           uint32                 `protobuf:"varint,12,opt,name=ilvl,proto3" json:"ilvl,omitempty"`
 	SocketedItems  []byte                 `protobuf:"bytes,13,opt,name=socketed_items,json=socketedItems,proto3" json:"socketed_items,omitempty"`
 	Properties     []byte                 `protobuf:"bytes,14,opt,name=properties,proto3" json:"properties,omitempty"`
 	Requirements   []byte                 `protobuf:"bytes,15,opt,name=requirements,proto3" json:"requirements,omitempty"`
@@ -209,21 +209,21 @@ func (x *Item) GetRarity() string {
 	return ""
 }
 
-func (x *Item) GetW() int32 {
+func (x *Item) GetW() uint32 {
 	if x != nil {
 		return x.W
 	}
 	return 0
 }
 
-func (x *Item) GetH() int32 {
+func (x *Item) GetH() uint32 {
 	if x != nil {
 		return x.H
 	}
 	return 0
 }
 
-func (x *Item) GetIlvl() int32 {
+func (x *Item) GetIlvl() uint32 {
 	if x != nil {
 		return x.Ilvl
 	}
@@ -351,12 +351,12 @@ func (x *Item) GetDesecrated() bool {
 
 type Query struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	ItemId        string                 `protobuf:"bytes,2,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
 	Realm         string                 `protobuf:"bytes,3,opt,name=realm,proto3" json:"realm,omitempty"`
 	League        string                 `protobuf:"bytes,4,opt,name=league,proto3" json:"league,omitempty"`
 	Query         string                 `protobuf:"bytes,5,opt,name=query,proto3" json:"query,omitempty"`
-	Update        int64                  `protobuf:"varint,6,opt,name=update,proto3" json:"update,omitempty"`
+	Update        uint32                 `protobuf:"varint,6,opt,name=update,proto3" json:"update,omitempty"`
 	NextRun       int64                  `protobuf:"varint,7,opt,name=next_run,json=nextRun,proto3" json:"next_run,omitempty"`
 	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
 	StartedAt     int64                  `protobuf:"varint,9,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
@@ -395,7 +395,7 @@ func (*Query) Descriptor() ([]byte, []int) {
 	return file_proto_rdpc_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Query) GetId() int64 {
+func (x *Query) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
@@ -430,7 +430,7 @@ func (x *Query) GetQuery() string {
 	return ""
 }
 
-func (x *Query) GetUpdate() int64 {
+func (x *Query) GetUpdate() uint32 {
 	if x != nil {
 		return x.Update
 	}
@@ -1137,9 +1137,9 @@ const file_proto_rdpc_proto_rawDesc = "" +
 	"\tbase_type\x18\b \x01(\tR\bbaseType\x12\x16\n" +
 	"\x06rarity\x18\t \x01(\tR\x06rarity\x12\f\n" +
 	"\x01w\x18\n" +
-	" \x01(\x05R\x01w\x12\f\n" +
-	"\x01h\x18\v \x01(\x05R\x01h\x12\x12\n" +
-	"\x04ilvl\x18\f \x01(\x05R\x04ilvl\x12%\n" +
+	" \x01(\rR\x01w\x12\f\n" +
+	"\x01h\x18\v \x01(\rR\x01h\x12\x12\n" +
+	"\x04ilvl\x18\f \x01(\rR\x04ilvl\x12%\n" +
 	"\x0esocketed_items\x18\r \x01(\fR\rsocketedItems\x12\x1e\n" +
 	"\n" +
 	"properties\x18\x0e \x01(\fR\n" +
@@ -1167,12 +1167,12 @@ const file_proto_rdpc_proto_rawDesc = "" +
 	"desecrated\x18\x1d \x01(\bR\n" +
 	"desecrated\"\xf9\x01\n" +
 	"\x05Query\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x17\n" +
 	"\aitem_id\x18\x02 \x01(\tR\x06itemId\x12\x14\n" +
 	"\x05realm\x18\x03 \x01(\tR\x05realm\x12\x16\n" +
 	"\x06league\x18\x04 \x01(\tR\x06league\x12\x14\n" +
 	"\x05query\x18\x05 \x01(\tR\x05query\x12\x16\n" +
-	"\x06update\x18\x06 \x01(\x03R\x06update\x12\x19\n" +
+	"\x06update\x18\x06 \x01(\rR\x06update\x12\x19\n" +
 	"\bnext_run\x18\a \x01(\x03R\anextRun\x12\x16\n" +
 	"\x06status\x18\b \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
