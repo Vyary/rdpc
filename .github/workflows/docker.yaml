@@ -19,7 +19,7 @@ jobs:
 
       - name: Build images
         run: |
-          IMAGE="vayry/rdpc-arm"
+          IMAGE="vyary/rdpc-arm"
           SHA_TAG="${IMAGE}:${{ github.sha }}"
           LATEST_TAG="${IMAGE}:latest"
 
@@ -27,6 +27,6 @@ jobs:
 
       - name: Push images
         run: |
-          IMAGE="vayry/rdpc-arm"
+          IMAGE="vyary/rdpc-arm"
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:latest"
